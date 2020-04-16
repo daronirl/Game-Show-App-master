@@ -19,12 +19,8 @@ startDiv.addEventListener('click', () => {
 
 
 qwerty.addEventListener('click', (e) => {
-    if (event.target.tagName == 'LI') {
-        
-
-    }
-
-})
+    
+});
 
 
 // Phrase list
@@ -55,14 +51,13 @@ getRandomPhraseAsArray(wordPhrase);
 const addPhraseToDisplay = (arr) => {
     for (let i = 0; i < wordPhrase.length; i++) {
       let li = document.createElement('li');
-      li.textContent = phrase.value;
+      li.innerHTML = arr[i];
+
+      if (li.innerHTML != ' ') {
+        li.classList.add('letter');
+
+      } 
       phrase.appendChild(li);
-
-      if (i === 'letter') {
-        li[i].className = 'letter';
-
-      }
-     
     }
     
 }
@@ -72,7 +67,22 @@ addPhraseToDisplay(phraseArray);
 
 
 
-const checkLetter = (button) => {
+// Check if a letter is in the phrase
 
+const checkLetter = (button) => {
+    let listItems = document.querySelectorAll('.letter');
+    let matchFound = null;
+
+    for (i = 0; i < listItems.length; i++) {
+        
+        if (button.textContent === listItems[i].textContent) {
+            listItems.classList.add('Show');
+            matchFound = listItems[i].textContent;
+           
+        } 
+        
+    }
+        return matchFound;
 
 }
+
