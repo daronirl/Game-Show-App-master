@@ -3,14 +3,14 @@
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startDiv = document.querySelector('.start')
+const heart = document.querySelectorAll(".tries");
 const missed = 0;
 
 
 
 startDiv.addEventListener('click', () => {
-    
     if (startDiv.style.display === 'none') {
-        StartDiv.style.display = 'block';
+        StartDiv.style.display = 'flex';
     } else {
         startDiv.style.display = 'none';
     }
@@ -18,15 +18,29 @@ startDiv.addEventListener('click', () => {
 });
 
 
+// Listen for on screen keyboard to be clicked
+
 qwerty.addEventListener('click', (e) => {
-    
+     if (e.target.tagName === 'BUTTON') {
+        e.target.classList.add('chosen');
+        e.target.disabled = true;
+        const letterFound = checkLetter(e.target);
+
+        if (letterFound === null) {
+            
+            
+            
+          
+        }
+    }
+ 
 });
 
 
 // Phrase list
 
 const wordPhrase = [
-    'learning javascript',
+    'shaun of the dead',
     'lord of the rings',
     'wrestle mania',
     'leonardo dicaprio',
@@ -49,7 +63,7 @@ getRandomPhraseAsArray(wordPhrase);
 // adds the letter of a string to the display
 
 const addPhraseToDisplay = (arr) => {
-    for (let i = 0; i < wordPhrase.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
       let li = document.createElement('li');
       li.innerHTML = arr[i];
 
@@ -57,6 +71,7 @@ const addPhraseToDisplay = (arr) => {
         li.classList.add('letter');
 
       } 
+
       phrase.appendChild(li);
     }
     
@@ -73,7 +88,7 @@ const checkLetter = (button) => {
     let listItems = document.querySelectorAll('.letter');
     let matchFound = null;
 
-    for (i = 0; i < listItems.length; i++) {
+    for (i = 0; i < listItems[i].length; i++) {
         
         if (button.textContent === listItems[i].textContent) {
             listItems.classList.add('Show');
@@ -85,4 +100,5 @@ const checkLetter = (button) => {
         return matchFound;
 
 }
+
 
