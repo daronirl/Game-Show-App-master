@@ -3,7 +3,7 @@
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startDiv = document.querySelector('.start')
-const heart = document.querySelectorAll(".tries");
+
 const missed = 0;
 
 
@@ -27,7 +27,10 @@ qwerty.addEventListener('click', (e) => {
         const letterFound = checkLetter(e.target);
 
         if (letterFound === null) {
+            let heart = document.getElementsByTagName('img')[0];
+            heart.src = 'images/lostHeart.png';
             
+                       
             
             
           
