@@ -107,20 +107,20 @@ const checkLetter = (button) => {
 }
 
 
-const checkWin = (arr) => {
+const checkWin = () => {
     let showLetter = document.getElementsByTagName('li').className = 'letter';
     let showItems = document.getElementsByTagName('li').className = 'show';
 
     if (showLetter.length === showItems.length) {
-        arr.classList.add('win');
-        arr.style.display = '';
+        startDiv.classList.add('win');
+        startDiv.style.display = '';
         title.textContent = 'You win!';
 
 
 
      } else if (missed >= 5) {
-            arr.classList.add('lost');
-            arr.style.display = '';
+            startDiv.classList.add('lost');
+            startDiv.style.display = '';
             title.textContent = 'You Lose!';
             
 
