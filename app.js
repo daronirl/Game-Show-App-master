@@ -2,9 +2,10 @@
 
 const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
-const startDiv = document.querySelector('.start')
-
-const missed = 0;
+const startDiv = document.querySelector('.start');
+const title = document.querySelector('.title');
+const olay = document.getElementById('overlay');
+let missed = 0;
 
 
 
@@ -27,16 +28,14 @@ qwerty.addEventListener('click', (e) => {
         const letterFound = checkLetter(e.target);
 
         if (letterFound === null) {
-            let heart = document.getElementsByTagName('img')[0];
+            let heart = document.getElementsByTagName('img')[missed];
             heart.src = 'images/lostHeart.png';
-            
-                       
-            
-            
+            missed += 1;
+                                  
           
         }
     }
- 
+   
 });
 
 
@@ -55,8 +54,8 @@ const wordPhrase = [
 // Return a random phrase from an array
 
 const getRandomPhraseAsArray = (arr) => {
-    const getRandomPhrase = Math.floor(Math.random() * wordPhrase.length);
-
+    let getRandomPhrase = Math.floor(Math.random() * wordPhrase.length);
+    
      return wordPhrase[getRandomPhrase].split('');
 }
 getRandomPhraseAsArray(wordPhrase);
@@ -66,16 +65,19 @@ getRandomPhraseAsArray(wordPhrase);
 // adds the letter of a string to the display
 
 const addPhraseToDisplay = (arr) => {
+    let phraseDisplay = document.querySelector('ul');
     for (let i = 0; i < arr.length; i++) {
       let li = document.createElement('li');
-      li.innerHTML = arr[i];
+      li.textContent = arr[i];
 
-      if (li.innerHTML != ' ') {
+      if (li.textContent === ' ') {
+        li.classList.add('space');
+
+      } else {
         li.classList.add('letter');
+      }
 
-      } 
-
-      phrase.appendChild(li);
+      phraseDisplay.appendChild(li);
     }
     
 }
@@ -94,7 +96,7 @@ const checkLetter = (button) => {
     for (i = 0; i < listItems[i].length; i++) {
         
         if (button.textContent === listItems[i].textContent) {
-            listItems.classList.add('Show');
+            listItems.classList.add('show');
             matchFound = listItems[i].textContent;
            
         } 
@@ -105,3 +107,26 @@ const checkLetter = (button) => {
 }
 
 
+const checkWin = (arr) => {
+    let showLetter = document.getElementsByTagName('li').className = 'letter';
+    let showItems = document.getElementsByTagName('li').className = 'show';
+
+    if (showLetter.length === showItems.length) {
+        arr.classList.add('win');
+        arr.style.display = '';
+        title.textContent = 'You win!';
+
+
+
+     } else if (missed >= 5) {
+            arr.classList.add('lost');
+            arr.style.display = '';
+            title.textContent = 'You Lose!';
+            
+
+        
+
+    }
+
+    checkWin(olay);
+}
