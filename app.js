@@ -26,7 +26,7 @@ qwerty.addEventListener('click', (e) => {
      if (e.target.tagName === 'BUTTON') {
         e.target.classList.add('chosen');
         e.target.disabled = true;
-        const letterFound = checkLetter(e.target);
+        const letterFound = checkLetter(e.target.innerHTML);
 
         if (letterFound === null) {
             let heart = document.getElementsByTagName('img')[missed];
@@ -37,7 +37,7 @@ qwerty.addEventListener('click', (e) => {
         }
     }
 
-    
+    checkWin();
    
 });
 
@@ -51,7 +51,11 @@ const wordPhrase = [
     'leonardo dicaprio',
     'merry christmas',
     'this is the way',
-    'dogs'
+    'dogs',
+    'president',
+    'treehouse',
+    'i love you',
+    'baby yoda'
 ]
 
 // Return a random phrase from an array
@@ -95,10 +99,10 @@ const checkLetter = (button) => {
     let listItems = document.getElementsByClassName('letter');
     let matchFound = null;
 
-    for (i = 0; i < listItems[i].length; i++) {
+    for (let i = 0; i < listItems.length; i++) {
         
         if (listItems[i].textContent === button) {
-            listItems.classList.add('show');
+            listItems[i].classList.add('show');
             matchFound = listItems[i].textContent;
            
         } 
@@ -130,7 +134,7 @@ const checkWin = () => {
             
 
         
-        checkWin();
+        
     }
     
 
