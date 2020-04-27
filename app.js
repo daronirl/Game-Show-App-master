@@ -8,7 +8,7 @@ const overlay = document.getElementById('overlay');
 
 let missed = 0;
 
-
+// Listen for start game button to be pressed
 
 startDiv.addEventListener('click', () => {
     if (startDiv.style.display === 'none') {
@@ -113,6 +113,8 @@ const checkLetter = (button) => {
 }
 
 
+// check if game has been won or loss
+
 const checkWin = () => {
     const showLetter = document.getElementsByClassName('letter');
     const showItems = document.getElementsByClassName('show');
@@ -120,9 +122,8 @@ const checkWin = () => {
         overlay.classList.add('win');
         overlay.style.display = 'flex';
         title.textContent = 'You Won!';
+        startDiv.setAttribute("onClick","window.location.reload()");
         
-
-
     } 
     
     
@@ -130,12 +131,12 @@ const checkWin = () => {
             overlay.classList.add('lose');
             overlay.style.display = 'flex';
             title.textContent = 'You Lose!';
-            
-            
-
-        
+            startDiv.setAttribute("onClick","window.location.reload()");
         
     }
     
 
 }
+
+
+
